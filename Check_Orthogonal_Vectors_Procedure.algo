@@ -1,0 +1,27 @@
+ALGORITHM Check_Orthogonal_Vectors_Procedure
+VAR
+  v1[1..100], v2[1..100] : ARRAY OF REAL
+  ps : REAL
+  i, j, n, k : INTEGER
+
+BEGIN
+  INPUT n  // number of vector pairs
+
+  FOR i ← 1 TO n DO
+    INPUT k  // size of vectors
+    FOR j ← 1 TO k DO
+      INPUT v1[j]
+    ENDFOR
+    FOR j ← 1 TO k DO
+      INPUT v2[j]
+    ENDFOR
+
+    CALL dot_product(v1, v2, k, ps)
+
+    IF ps = 0 THEN
+      OUTPUT "Vectors ", i, " are orthogonal"
+    ELSE
+      OUTPUT "Vectors ", i, " are not orthogonal"
+    ENDIF
+  ENDFOR
+END

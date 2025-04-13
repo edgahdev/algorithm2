@@ -1,0 +1,68 @@
+ALGORITHM Sum_Distinct_Elements
+VAR
+  A[1..n] : ARRAY OF INTEGER
+  B[1..m] : ARRAY OF INTEGER
+  COUNTED[1..n+m] : ARRAY OF INTEGER
+  i, j, k, sum, countedSize : INTEGER
+  found, alreadyCounted : BOOLEAN
+
+BEGIN
+  sum ← 0
+  countedSize ← 0
+
+  // Traverse A
+  FOR i ← 1 TO n DO
+    found ← FALSE
+    FOR j ← 1 TO m DO
+      IF A[i] = B[j] THEN
+        found ← TRUE
+        BREAK
+      ENDIF
+    ENDFOR
+
+    IF found = FALSE THEN
+      alreadyCounted ← FALSE
+      FOR k ← 1 TO countedSize DO
+        IF A[i] = COUNTED[k] THEN
+          alreadyCounted ← TRUE
+          BREAK
+        ENDIF
+      ENDFOR
+
+      IF alreadyCounted = FALSE THEN
+        sum ← sum + A[i]
+        countedSize ← countedSize + 1
+        COUNTED[countedSize] ← A[i]
+      ENDIF
+    ENDIF
+  ENDFOR
+
+  // Traverse B
+  FOR i ← 1 TO m DO
+    found ← FALSE
+    FOR j ← 1 TO n DO
+      IF B[i] = A[j] THEN
+        found ← TRUE
+        BREAK
+      ENDIF
+    ENDFOR
+
+    IF found = FALSE THEN
+      alreadyCounted ← FALSE
+      FOR k ← 1 TO countedSize DO
+        IF B[i] = COUNTED[k] THEN
+          alreadyCounted ← TRUE
+          BREAK
+        ENDIF
+      ENDFOR
+
+      IF alreadyCounted = FALSE THEN
+        sum ← sum + B[i]
+        countedSize ← countedSize + 1
+        COUNTED[countedSize] ← B[i]
+      ENDIF
+    ENDIF
+  ENDFOR
+
+  OUTPUT sum
+END

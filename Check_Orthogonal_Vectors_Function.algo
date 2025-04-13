@@ -1,0 +1,11 @@
+FUNCTION dot_product(v1[1..k] : ARRAY OF REAL, v2[1..k] : ARRAY OF REAL, k : INTEGER) : REAL
+VAR
+  i : INTEGER
+  ps : REAL
+BEGIN
+  ps ← 0
+  FOR i ← 1 TO k DO
+    ps ← ps + v1[i] * v2[i]
+  ENDFOR
+  RETURN ps
+END

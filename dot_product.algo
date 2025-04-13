@@ -1,0 +1,9 @@
+PROCEDURE dot_product(v1[1..k] : ARRAY OF REAL, v2[1..k] : ARRAY OF REAL, k : INTEGER, ps : OUT REAL)
+VAR
+  i : INTEGER
+BEGIN
+  ps ← 0
+  FOR i ← 1 TO k DO
+    ps ← ps + v1[i] * v2[i]
+  ENDFOR
+END
